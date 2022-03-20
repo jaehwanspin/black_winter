@@ -1,0 +1,14 @@
+{
+    "servers": [
+        {
+            "identifier": "example_server",
+            "endpoint": {
+                "address": "127.0.0.1",
+                "port": 7777
+            },
+            "session_pool": {
+                "max_sessions": 65535
+            }
+        }
+    ]
+}

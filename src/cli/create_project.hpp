@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace bw
+namespace black_winter
 {
 namespace cli
 {
@@ -11,7 +11,7 @@ namespace cli
 class create_project
 {
 public:
-    create_project()
+    create_project(const std::string& path);
 };
 
 }

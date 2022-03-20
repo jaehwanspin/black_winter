@@ -9,7 +9,7 @@
 #include <boost/program_options/cmdline.hpp>
 namespace opts = boost::program_options;
 
-namespace bw
+namespace black_winter
 {
 namespace cli
 {
@@ -23,7 +23,7 @@ framework::framework(int argc, char** argv) :
 
 framework::~framework()
 {
-    
+
 }
 
 int framework::execute()

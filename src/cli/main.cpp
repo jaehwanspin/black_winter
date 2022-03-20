@@ -2,5 +2,5 @@
 
 int main(int argc, char** argv)
 {
-    return bw::cli::framework(argc, argv).execute();
+    return black_winter::cli::framework(argc, argv).execute();
 }
