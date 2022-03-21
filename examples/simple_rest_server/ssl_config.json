@@ -1,0 +1,12 @@
+{
+    "identifier": "example_ssl_server",
+    "address": "0.0.0.0",
+    "port": 8443,
+    "https": true,
+    "ssl": {
+        "cert_path": "",
+        "key_path": "",
+        "protocol": ""
+    },
+    "max_sessions": 65535
+}

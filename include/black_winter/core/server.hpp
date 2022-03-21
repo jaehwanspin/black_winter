@@ -42,7 +42,7 @@ public:
 
 public:
     server(boost::asio::io_context& io_ctx) noexcept;
-    explicit server(const std::string& server_identifier,boost::asio::io_context& io_ctx,
+    explicit server(boost::asio::io_context& io_ctx,
                     const config& cfg) noexcept;
     virtual ~server();
 

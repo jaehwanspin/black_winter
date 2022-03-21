@@ -71,12 +71,10 @@ server::server(boost::asio::io_context& io_ctx) noexcept :
  * @param io_ctx 
  * @param endpoint 
  */
-server::server(const std::string& server_identifier,
-               boost::asio::io_context& io_ctx,
+server::server(boost::asio::io_context& io_ctx,
                const config& cfg) noexcept :
     io_ctx_(io_ctx),
-    config_(cfg),
-    server_identifier_(server_identifier)
+    config_(std::move(cfg))
 {
     server::servers[this->server_identifier_] = this;
 }
