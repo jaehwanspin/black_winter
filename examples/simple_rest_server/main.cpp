@@ -12,9 +12,8 @@ int main(int argc, char** argv)
 {
     boost::asio::io_context io_ctx;
 
-    black_winter::core::server server("example_server", io_ctx);
-
-    
+    black_winter::core::server server("example_server", io_ctx,
+        black_winter::core::config::default_config());
 
     io_ctx.run();
 

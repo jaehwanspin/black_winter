@@ -22,6 +22,8 @@
 
 namespace black_winter
 {
+namespace core
+{
 
 /**
  * @author Jin
@@ -30,8 +32,42 @@ namespace black_winter
  */
 class config
 {
-private:
+public:
+    class server_config
+    {
+    public:
+        class ssl_config
+        {
+            bool                      use_ssl_;
+            std::string               ssl_cert_;
+            std::string               ssl_key_;
+            std::string               ssl_dh_;
+            boost::asio::ssl::context ssl_ctx_;
 
+        public:
+            ssl_config() = default;
+            ssl_config(const std::string& cert,
+                       const std::string& key,
+                       const std::string& dh,
+                       boost::asio::ssl::context_base::method ssl_method);
+            ssl_config(const std::filesystem::path& cert_path,
+                       const std::filesystem::path& key,
+                       const std::filesystem::path& dh,
+                       boost::asio::ssl::context_base::method ssl_method);
+        };
+
+    private:
+        boost::asio::ip::tcp::endpoint endpoint_;
+        ssl_config                     ssl_cfg_;
+
+    public:
+        server_config(const boost::asio::ip::tcp::endpoint& endpoint);
+        server_config(const boost::asio::ip::tcp::endpoint& endpoint,
+                      boost::asio::ssl::context_base::method ssl_method);
+    };
+
+private:
+    friend class server;
 
 public:
     static const config default_config();
@@ -44,19 +80,16 @@ public:
 
 public:  
     config() noexcept;
-
+    config(const config&) = delete;
     config(config&& other);
-
-
-    boost::asio::ip::tcp::endpoint& endpoint();
+    
     
 private:
-    boost::asio::ip::tcp::endpoint endpoint_;
-    boost::asio::ssl::context      ssl_ctx_;
+    
 };
 
-}
-
+} // core
+} // black_winter
 
 
 #endif

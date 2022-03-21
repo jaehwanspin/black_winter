@@ -1,7 +1,60 @@
 #include <black_winter/core/config.hpp>
 
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
+#include <boost/json/object.hpp>
+#include <boost/json/array.hpp>
+#include <boost/json/value.hpp>
+
 namespace black_winter
 {
+
+// class config::server_config::ssl_config
+
+/**
+ * @author Jin
+ * @brief Construct a new config::server config::ssl config::ssl config object
+ * 
+ */
+config::server_config::ssl_config::ssl_config() :
+    use_ssl_(false),
+    ssl_cert_(),
+    ssl_key_(),
+    ssl_dh_(),
+    ssl_ctx_(boost::asio::ssl::context_base::tls)
+{
+}
+
+/**
+ * @author Jin
+ * @brief Construct a new config::server config::ssl config::ssl config object
+ * 
+ * @param cert 
+ * @param key 
+ * @param dh 
+ * @param ssl_ctx 
+ */
+config::server_config::ssl_config::ssl_config(const std::string& cert,
+                                              const std::string& key,
+                                              const std::string& dh,
+                                              boost::asio::ssl::context_base::method ssl_method) :
+    use_ssl_(true),
+    ssl_cert_(cert),
+    ssl_key_(key),
+    ssl_dh_(dh),
+    ssl_ctx_(ssl_method)
+{
+}
+
+config::server_config::ssl_config::ssl_config(const std::filesystem::path& cert_path,
+                                              const std::filesystem::path& key,
+                                              const std::filesystem::path& dh,
+                                              boost::asio::ssl::context_base::method ssl_method) :
+    ssl_ctx_(ssl_method)
+{
+}
+
+
 
 // static
 
@@ -12,9 +65,7 @@ namespace black_winter
  */
 const config config::default_config()
 {
-    config cfg;
-
-    return cfg;
+    
 }
 
 /**

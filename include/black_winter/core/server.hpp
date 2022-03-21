@@ -14,6 +14,8 @@
 
 #include <string>
 #include <memory>
+#include <unordered_map>
+#include <unordered_set>
 
 #include <boost/asio/io_context.hpp>
 #include <boost/asio/ip/tcp.hpp>
@@ -36,14 +38,16 @@ private:
     static std::unordered_map<std::string, server*> servers;
 public:
     [[nodiscard]] static server& get_server(const std::string& identifier);
+    [[nodiscard]] static std::unordered_set<std::string> const server_identifiers();
 
 public:
+    server(boost::asio::io_context& io_ctx) noexcept;
     explicit server(const std::string& server_identifier,boost::asio::io_context& io_ctx,
                     const config& cfg) noexcept;
     virtual ~server();
 
     [[nodiscard]] boost::asio::io_context&              io_context() const;
-    [[nodiscard]] const std::string&              server_identifier();
+    [[nodiscard]] const std::string&                    server_identifier();
     [[nodiscard]] const boost::asio::ip::tcp::endpoint& endpoint();
 
 private:
