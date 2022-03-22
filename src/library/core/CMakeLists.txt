@@ -4,6 +4,7 @@ set(BLACK_WINTER_CORE_LIBRARY_SRC
     request.cpp
     response.cpp
     session.cpp
+    internal/file_loader.cpp
     )
 
 add_library(black-winter-core ${BLACK_WINTER_CORE_LIBRARY_SRC})

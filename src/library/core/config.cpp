@@ -8,6 +8,8 @@
 
 namespace black_winter
 {
+namespace core
+{
 
 // class config::server_config::ssl_config
 
@@ -152,5 +154,5 @@ boost::asio::ip::tcp::endpoint& endpoint()
     return this->endpoint_;
 }
 
-
+}
 }
